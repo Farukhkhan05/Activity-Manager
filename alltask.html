@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/css/simple-sidebar.css" rel="stylesheet">
+  <title>All Tasks</title>
+</head>
+<body>
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">MY TODO</div>
+      <div class="list-group list-group-flush">
+        <a href="index.html" class="list-group-item list-group-item-action bg-light">Plan Your Day</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">All Tasks</a>
+        <a href="calender.html" class="list-group-item list-group-item-action bg-light">Calender</a>
+      </div>
+    </div>
+
+    <!-- Navbar -->
+    <div id="page-content-wrapper">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <button class="btn btn-secondary" id="menu-toggle"><<<</button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+        <div class="container-fluid bg-light">
+            <div class="container col-sm-9 col-md-6 col-lg-12 bg-light" id="myTasks">
+              <h4 class="text-center text-uppercase text-danger">All Tasks</h4>
+              <input type="text" class="form-control" id="myInput" onkeyup="myFunction()" placeholder="Type for Search" title="Type in a name"><br>
+              <table class="table table-striped" bordered="2" id="disp"></table>
+            </div>
+        </div>
+    </div>  
+   </div>
+   <!-- Bootstrap core JavaScript -->
+   <script src="vendor/vendor/jquery/jquery.min.js"></script>
+   <script src="vendor/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function(e) {
+          e.preventDefault();
+          $("#wrapper").toggleClass("toggled");
+        });
+      </script>
+      <script src="my.js"></script>
+      <script>
+        function display(){
+          var a = "<tr><th>TASKS</th><th>STATUS</th><th>PRIORITY</th><th>DATE</th><th>DELETE</th>";
+
+            for (let i=0; i<arr.length; i++) {
+              
+              a += "<tr>";
+              a += "<td>" + arr[i].task1 + "</td>";
+              a += "<td>" + arr[i].status1 + "</td>";
+              a += "<td>" + arr[i].priority1 + "</td>";
+              a += "<td>" + arr[i].date1 + "</td>";
+              a += `<td><button class="btn btn-danger" onclick="deletes(${i})">Delete Item</button></td>`;
+              a += "</tr>"; 
+            }
+            document.getElementById('disp').innerHTML = a;
+
+            var table, rows, switching, i, x, y, shouldSwitch;
+            table = document.getElementById('disp');
+            switching = true;
+            while (switching) {
+              switching = false;
+              rows = table.rows;
+
+              for (i=1; i<(rows.length - 1); i++) {
+                shouldSwitch = false;
+
+                x = rows[i].getElementsByTagName("TD")[1];
+                y = rows[i+1].getElementsByTagName("TD")[1];
+
+                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()){
+                  shouldSwitch = true;
+                  break;
+                }
+              }
+              if (shouldSwitch){
+                rows[i].parentNode.insertBefore(rows[i+1],rows[i]);
+                switching = true;
+              }
+            }
+        }
+        getData();
+        display();
+        
+        function myFunction() {
+          var input, filter, table, tr, td, i, txtValue;
+          input = document.getElementById('myInput');
+          filter = input.value.toUpperCase();
+          table = document.getElementById('disp');
+          tr = table.getElementsByTagName('tr');
+          for (i=0; i<tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+              txtValue = td.textContent || td.innerText;
+              if(txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            }
+          }
+        }
+        getData();
+        display();
+      </script>
+
+</body>
+</html>    

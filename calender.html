@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/css/simple-sidebar.css" rel="stylesheet">
+  <!--plugin for monthly-css-->
+  <link href="css/css/monthly.css" rel="stylesheet">
+
+  <script type="text/javascript" src="js/js/jquery.js"></script>
+  <script type="text/javascript" src="js/js/monthly.js"></script>
+  <style>
+    #mycalender{
+      width: 100%;
+      margin: 2em auto 0 auto;
+      max-width: 80em;
+      border: 1px solid #666;
+    }
+  </style>
+
+  <title>Calender</title>
+</head>
+<body>
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">MY TODO</div>
+      <div class="list-group list-group-flush">
+        <a href="index.html" class="list-group-item list-group-item-action bg-light">Plan Your Day</a>
+        <a href="alltask.html" class="list-group-item list-group-item-action bg-light">All Tasks</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Calender</a>
+      </div>
+    </div>
+
+        <!-- Navbar -->
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+              <button class="btn btn-secondary" id="menu-toggle"><<<</button>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+      
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+            <div class="container-fluid">
+              <h4 class="text-center text-uppercase text-warning">Calender</h4>
+              <div class="monthly" id="mycalender"></div>
+            </div>
+        </div>  
+  </div>
+      
+        
+
+        <!-- Menu Toggle Script -->
+        <script>
+        $("#menu-toggle").click(function(e) {
+          e.preventDefault();
+          $("#wrapper").toggleClass("toggled");
+        });
+        </script>
+        <script src="my.js"></script>
+        <script>
+          var arr = JSON.parse(localStorage.getItem('arr')) || [];
+          var monthly = [];
+          var color ={Start:"red", "In Progress":"blue", Completed:"green"};
+          arr.forEach(function(el,index){
+            monthly.push({
+              id: index,
+              name: el.task1,
+              startdate: el.date1,
+              enddate: el.date1,
+              starttime: "",
+              endtime: "",
+              color: color[el.status1],
+              url: ""
+            });
+          });
+
+          var sampleEvents = {
+            monthly: monthly
+          };
+          $(window).load(function(){
+            $('#mycalender').monthly({
+              mode: 'event',
+              dataType: 'json',
+              events: sampleEvents
+            });
+          });
+        </script>
+
+</body>
+</html>    

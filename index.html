@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/css/simple-sidebar.css" rel="stylesheet">
+  <title>Activity Manager</title>
+</head>
+<body>
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">MY TODO</div>
+      <div class="list-group list-group-flush">
+        <a href="#" class="list-group-item list-group-item-action bg-light">Plan Your Day</a>
+        <a href="alltask.html" class="list-group-item list-group-item-action bg-light">All Tasks</a>
+        <a href="calender.html" class="list-group-item list-group-item-action bg-light">Calender</a>
+      </div>
+    </div>
+
+    <!-- Navbar -->
+    <div id="page-content-wrapper">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <button class="btn btn-secondary" id="menu-toggle"><<<</button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!--Page Content-->
+      <div class="container-fluid row"> 
+        <div class="conainer col-sm-3 col-md-6 col-lg-4">
+          <form class="form-horizontal">
+            <div class="form-group col-xs-4"><br>
+              Task:<input type="text" name="task" id="task" class="form-control" placeholder="Enter the value" autocomplete="off">
+            </div>
+            <div class="form-group col-xs-4"><br>
+              Status:<select class="form-control" id="status">
+                <option>Start</option>
+                <option>In Progress</option>
+                <option>Completed</option>
+              </select>
+            </div>
+            <div class="form-group col-xs-4"><br>
+              Priority:<select class="form-control" id="priority">
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+              </select><br>
+              <div class="form-group col-xs-4"><br>
+              Date:<input type="date" name="date" id="date" class="form-control">
+              </div>
+            </div>
+          </form><br>
+          <button class="btn btn-info active add-Save-button col-lg-5" value="add" id="add" onclick="pushD()">Add</button>
+        </div>
+        <div class="container col-sm-9 col-md-6 col-lg-8 bg-light" id="myTasks">
+          <h4 class="text-center text-uppercase text-success">Today's Tasks</h4>
+          <table class="table table-bordered" id="disp"></table>
+        </div>
+      </div>
+    </div>  
+  </div>
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+  <script src="my.js"></script>
+</body>
+</html>
